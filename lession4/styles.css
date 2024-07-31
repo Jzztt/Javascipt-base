@@ -1,0 +1,37 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.slideshow-container {
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide img {
+    width: 100%;
+}
+
+.slide.active {
+    display: block;
+}
+.btn{
+    width: 70px;
+    height: 30px;
+    margin-top: 10px;
+}
+.btn-action{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+

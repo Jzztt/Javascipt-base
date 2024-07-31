@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+      }
+      .error {
+        color: red;
+        font-size: 15px;
+      }
+      .input-field {
+        margin: 10px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Đăng ký Thành Viên</h1>
+        <form id="myForm">
+          <div class="input-field">
+            <label for="user">User</label>
+            <input type="text" id="user" name="user" />
+            <span class="error" id="userError"></span>
+          </div>
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" />
+            <span class="error" id="emailError"></span>
+          </div>
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" />
+            <span class="error" id="passwordError"></span>
+          </div>
+          <div class="input-field">
+            <label for="yearsOfExperience">Số năm Làm Việc</label>
+            <input
+              type="text"
+              id="yearsOfExperience"
+              name="yearsOfExperience"
+            />
+            <span class="error" id="yearsOfExperienceError"></span>
+          </div>
+          <button type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let isValid = true;
+
+          // xóa thông báo lỗi cũ
+          document.getElementById("userError").textContent = "";
+          document.getElementById("emailError").textContent = "";
+          document.getElementById("passwordError").textContent = "";
+          document.getElementById("yearsOfExperienceError").textContent = "";
+
+          // kiem tra ten
+          const user = document.getElementById("user").value.trim();
+          if (user === "") {
+            document.getElementById("userError").textContent =
+              "Tên là bắt buộc";
+            isValid = false;
+          }
+
+          // kiem tra email
+          // regular expression
+          // const emailValidation = /^[]
+          // admin@gmail.com
+          // là string => ^
+          // không có khoảng trắng và @ => [^\s@]
+          // @ => @
+          // không có khoảng trắng và @ => [^\s@]
+          // . => \.
+          // không có khoảng trắng và @ => [^\s@]
+          // kết thúc => $/
+
+          // ghép => /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          const email = document.getElementById("email").value.trim();
+          const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (email === "") {
+            document.getElementById("emailError").textContent =
+              "Email là bắt buộc";
+            isValid = false;
+          }
+          if (!emailValidation.test(email)) {
+            document.getElementById("emailError").textContent =
+              "Email không đúng định dạng";
+            isValid = false;
+          }
+
+          // Kiểm tra Password
+
+          // kiểm tra số trong regular expression
+          // 0-9 => \d
+
+          const password = document.getElementById("password").value.trim();
+          const passwordValidation = /\d/;
+          if (password.length < 6) {
+            document.getElementById("passwordError").textContent =
+              "Password ít nhất 6 kí tự";
+            isValid = false;
+          }
+
+          if (!passwordValidation.test(password)) {
+            document.getElementById("passwordError").textContent =
+              "Password ít nhất 1 kí tự là số";
+            isValid = false;
+          }
+
+          // Kiểm tra số năm làm việc
+          const yearsOfExperience = document
+            .getElementById("yearsOfExperience")
+            .value.trim();
+          if (yearsOfExperience === "") {
+            document.getElementById("yearsOfExperienceError").textContent =
+              "Số năm Làm Việc là bắt buộc";
+            isValid = false;
+          }
+
+          if (isNaN(yearsOfExperience)) {
+            document.getElementById("yearsOfExperienceError").textContent =
+              "Số năm Làm Việc phải là số";
+            isValid = false;
+          }
+
+          if (isValid) {
+            console.log("Thành Công");
+          }
+        });
+    </script>
+  </body>
+</html>
